@@ -1,5 +1,5 @@
 import { Input, Title } from './Filter.styled';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 export function Filter({ onChange, value }) {
   return (
@@ -10,7 +10,7 @@ export function Filter({ onChange, value }) {
   );
 }
 
-// Filter.propTypes = {
-//   onChange: PropTypes.func.isRequired,
-//   value: PropTypes.string.isRequired,
-// };
+Filter.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+};

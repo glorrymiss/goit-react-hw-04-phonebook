@@ -13,60 +13,38 @@ const arr = [
 ];
 
 export function App() {
-  const [contacts, setContacts] = useState(arr);
+  const [contacts, setContacts] = useState(
+    JSON.parse(window.localStorage.getItem('Contacts')) || arr
+  );
   const [filter, setFilter] = useState('');
 
   const takeFormData = ({ name, number }) => {
-    console.log({ name, number });
     setContacts(prevState => {
-      console.log(prevState);
       if (
         prevState.some(
           contact => contact.name.toLowerCase() === name.toLowerCase()
         )
       ) {
         alert(`${name} is already in contacts`);
-        return;
+        return prevState;
       }
       return [...prevState, { id: nanoid(), name, number }];
     });
   };
-  useEffect(() => {
-    const saveContacts = localStorage.getItem('Contacts');
-    const parseContacts = JSON.parse(saveContacts);
-    if (parseContacts) {
-      setContacts([...parseContacts]);
-      //   this.setState({ contacts: parseContacts });
-    }
-  }, []);
 
   useEffect(() => {
-    console.log('There are different');
-    localStorage.setItem('Contacts', JSON.stringify(contacts));
+    contacts.length &&
+      localStorage.setItem('Contacts', JSON.stringify(contacts));
   }, [contacts]);
-
-  //   componentDidMount() {
-  //   const saveContacts = localStorage.getItem('Contacts');
-  //   const parseContacts = JSON.parse(saveContacts);
-  //   if (parseContacts) {
-  //     this.setState({ contacts: parseContacts });
-  //   }
-  // }
-  // componentDidUpdate(prevState, prevProps) {
-  //   if (this.state.contacts !== prevState.contacts) {
-  //     console.log('There are different');
-  //     localStorage.setItem('Contacts', JSON.stringify(this.state.contacts));
-  //   }
-  // }
 
   const filterChange = event => {
     setFilter(event.currentTarget.value);
-    console.log(event.currentTarget.value);
   };
 
   const filterCorrectData = () => {
+    const newNormFilter = filter.toLowerCase();
     return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(filter.toLowerCase())
+      contact.name.toLowerCase().includes(newNormFilter)
     );
   };
   const deleteContact = id => {
@@ -74,6 +52,7 @@ export function App() {
   };
 
   const filterContacts = filterCorrectData();
+
   return (
     <Container
       style={{

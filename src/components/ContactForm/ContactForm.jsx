@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Label, Button, Input } from './ContactForm.styled';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 export function ContactForm({ hendleSubmit }) {
   const [name, setName] = useState('');
@@ -65,6 +65,6 @@ export function ContactForm({ hendleSubmit }) {
   );
 }
 
-// ContactForm.propTypes = {
-//   onSubmit: PropTypes.func.isRequired,
-// };
+ContactForm.propTypes = {
+  hendleSubmit: PropTypes.func.isRequired,
+};
