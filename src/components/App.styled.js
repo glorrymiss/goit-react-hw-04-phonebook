@@ -5,8 +5,8 @@ export const Container = styled.div`
   flex-direction: column;
   gap: 20px;
   background-color: #f4a460;
-  height: 100hv;
+  min-height: 800px;
   width: 40%;
   margin: 0 auto;
-  padding: 15px;
+  padding: 0 15px 0 15px;
 `;
