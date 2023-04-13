@@ -7,14 +7,15 @@ export const Label = styled.label`
 export const Button = styled.button`
   font-size: 18px;
   width: 110px;
-  background-color: azure;
+  background-color: #ffdab9;
   padding: 4px;
   border: none;
   border-radius: 8px;
-
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.12), 2px 4px 4px rgba(0, 0, 0, 0.06),
     2px 4px 4px rgba(0, 0, 0, 0.16);
-
+  :hover {
+    background-color: cornsilk;
+  }
   :active {
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.12);
   }
